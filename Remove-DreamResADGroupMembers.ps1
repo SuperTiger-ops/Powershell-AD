@@ -1,3 +1,6 @@
+#Author: Felix
+#Version: 1.0
+
 $groupName = ""
 
 $computers = import-csv -Path ($env:USERPROFILE + "\Desktop\Computers.csv")
