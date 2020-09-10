@@ -11,7 +11,7 @@ Function Get-DreamRecADGroupmembers($groupName){
                 $type = (Get-ADObject -Identity $temp).ObjectClass
                 if($type -eq "computer")
                 {
-                    $computer =  get-adcomputer -Identity $temp -Properties Created,OperatingSystem,lastLogonTimestamp,ipv4address | Where-Object {$_.enabled -eq $true}|Select-Object Name,Enabled,Created,OperatingSystem,lastLogonTimestamp,ipv4address,@{n="lastLogonDate";e={[datetime]::FromFileTime($_.lastLogonTimestamp)}}
+                    $computer =  get-adcomputer -Identity $temp -Properties Created,OperatingSystem,ipv4address | Where-Object {$_.enabled -eq $true}|Select-Object Name,Enabled,Created,OperatingSystem,ipv4address,@{n="lastLogonDate";e={[datetime]::FromFileTime($_.lastLogonTimestamp)}}
                     $computer | Add-Member -Name "App" -Value $item -MemberType NoteProperty
                     $Computer | Export-Csv -Path ($env:USERPROFILE + "\Desktop\ComputerMembers.csv") -NoTypeInformation -Encoding UTF8 -Append
                 }
