@@ -3,7 +3,7 @@
 
 $groups = ("")
 
-Function Get-DreamRecGroupmembers($groupName){
+Function Get-DreamRecADGroupmembers($groupName){
     foreach($item in $groupName){
         $members = Get-ADGroup -Identity $item -Properties Members | Select-Object -ExpandProperty Members    
         foreach($temp in $members){
@@ -17,7 +17,7 @@ Function Get-DreamRecGroupmembers($groupName){
                 }
                 elseif($type -eq "Group")
                 {
-                    get-GeelyRecGroupmembers -groupName $temp
+                    get-DreamRecADGroupmembers -groupName $temp
                 }
                 elseif($type -eq "User")
                 {
@@ -37,4 +37,4 @@ Function Get-DreamRecGroupmembers($groupName){
 
 }
 
-Get-DreamRecGroupmembers -GroupName $groups
+Get-DreamRecADGroupmembers -GroupName $groups
