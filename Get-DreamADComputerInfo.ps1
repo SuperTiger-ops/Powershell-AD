@@ -1,3 +1,6 @@
+#Author: Felix
+#Version: 1.0
+
 Function Get-DreamADComputerInfo{
     param(
         [int]
